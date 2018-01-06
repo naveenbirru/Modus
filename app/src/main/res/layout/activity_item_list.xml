@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Note Title"
+        android:text="Item Name"
         android:id="@+id/listItemTitle"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/listItemImg"
@@ -32,12 +32,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="so this iasdasd asdfasjdklsdjfdksfjkjsadkljsdf asdfsdkjfsdf"
-        android:id="@+id/listItemBody"
+        android:text="this is weight"
+        android:id="@+id/listItemWeight"
         android:layout_below="@+id/listItemTitle"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/listItemImg"
         android:ellipsize="end"
         android:singleLine="true"
         android:layout_marginBottom="2dp"/>
+
+    <EditText
+        android:id="@+id/listItemDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listItemWeight"
+        android:layout_toEndOf="@+id/listItemImg"
+        android:ems="10"
+        android:inputType="date" />
 </RelativeLayout>
