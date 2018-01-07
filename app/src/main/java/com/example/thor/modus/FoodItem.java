@@ -12,6 +12,7 @@ public class FoodItem {
     private String expiryDate;
     private String weight;
     private Category category;
+    private long ID;
     public enum Category {DAIRY, FRUITS, GRAINS, MEAT, VEGETABLES};
 
     public FoodItem(String title, String weight, Category category, long foodItemID, String expiryDateinMilli) {
@@ -53,6 +54,13 @@ public class FoodItem {
 
     public void setWeight(String weight) {
         this.weight = weight;
+    }
+
+    public long getID() {
+        return ID;
+    }
+    public void setID(long ID) {
+         this.ID = ID;
     }
 
     public Category getCategory() {

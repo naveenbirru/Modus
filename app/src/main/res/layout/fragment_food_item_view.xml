@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="12dp"
+    android:paddingEnd="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    tools:context="com.example.thor.modus.FoodItemViewFragment"
+    android:id="@+id/relativeLayout">
+
+
+    <ImageView
+        android:id="@+id/foodItemDetailImg"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="61dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/foodItemDetailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/foodItemDetailImg"
+        android:layout_marginTop="15dp"
+        android:ellipsize="end"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:text="Item Name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/foodItemDetailWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:layout_below="@+id/foodItemDetailTitle"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="this is weight" />
+
+    <TextView
+        android:id="@+id/foodItemDetailDate"
+        android:layout_width="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/foodItemDetailWeight"
+        android:ems="10"
+        android:inputType="date"
+        android:text="this is date" />
+
+
+</RelativeLayout>
