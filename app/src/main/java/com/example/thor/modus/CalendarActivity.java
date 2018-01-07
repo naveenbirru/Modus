@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -34,13 +35,10 @@ public class CalendarActivity extends AppCompatActivity {
         // Add more planets. If you passed a String[] instead of a List<String>
         // into the ArrayAdapter constructor, you must not add more items.
         // Otherwise an exception will occur.
-
-        foodItems = new ArrayList<FoodItem>();
-        foodItems.add(new FoodItem("Milk", "1/13/18", "10", FoodItem.Category.DAIRY));
-        foodItems.add(new FoodItem("Peach", "4/13/18", "10", FoodItem.Category.FRUITS));
-        foodItems.add(new FoodItem("Rice", "1/13/18", "10", FoodItem.Category.GRAINS));
-        foodItems.add(new FoodItem("Chicken", "1/13/18", "10", FoodItem.Category.MEAT));
-        foodItems.add(new FoodItem("Broccoli", "1/13/18", "10", FoodItem.Category.VEGETABLES));
+        FoodDbAdapter dbAdapter = new FoodDbAdapter(this.getBaseContext());
+        dbAdapter.open();
+        foodItems = dbAdapter.getAllFoodItems();
+        dbAdapter.close();
 
         foodItemAdapter = new FoodItemAdapter(this, foodItems);
 
