@@ -1,5 +1,6 @@
 package com.example.thor.modus;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,10 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.action_add_note:
                 // User chose the "Settings" item, show the app settings UI...
                 Log.i("choosing add item", "$$$$$$$$$$$$$");
+                Intent intent =  new Intent(this, FoodItemDetailActivity.class);
+
+                intent.putExtra(MainActivity.FOOD_ITEM_FRAGMENT_TO_LOAD_EXTRA, MainActivity.FragementToLaunch.CREATE);
+                startActivity(intent);
                 return true;
 
             default:

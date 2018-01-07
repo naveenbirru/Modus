@@ -48,16 +48,15 @@ public class FoodItemDetailActivity extends BaseActivity {
                 setTitle(R.string.edit_fragment_title);
                 fragmentTransaction.add(R.id.food_item_container, foodItemEditFragment, "FOOD_ITEM_EDIT_FRAGMENT" );
                 break;
-           /* case CREATE:
-                NoteEditFragment noteCreateFragment = new NoteEditFragment();
+           case CREATE:
+                FoodItemEditFragment noteCreateFragment = new FoodItemEditFragment();
                 setTitle(R.string.create_fragment_title);
                 Bundle bundle = new Bundle();
                 bundle.putBoolean(NEW_NOTE_EXTRA, true);
 
                 noteCreateFragment.setArguments(bundle);
-                fragmentTransaction.add(R.id.note_container, noteCreateFragment, "NOTE_CREATE_FRAGMENT" );
+                fragmentTransaction.add(R.id.food_item_container, noteCreateFragment, "FOOD_ITEM_CREATE_FRAGMENT" );
                 break;
-                */
         }
 
         fragmentTransaction.commit();
