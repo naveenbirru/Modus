@@ -1,16 +1,13 @@
 package com.example.thor.modus;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
-import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //getActionBar().show();
 
         final ImageButton calender = (ImageButton)findViewById(R.id.calender);
         final ImageButton itemList = (ImageButton)findViewById(R.id.itemList);
@@ -55,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Hello", "settings button selected");
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     private void launchItemListActivity() {
