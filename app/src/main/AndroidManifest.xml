@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".ItemList" />
         <activity android:name=".CalendarActivity" />
+        <activity android:name=".FoodItemDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,12 @@
 package com.example.thor.modus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -36,7 +40,16 @@ public class ItemList extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.foodItemList);
         listView.setAdapter(foodItemAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                launchFoodItemDetialActivity(adapterView, MainActivity.FragementToLaunch.VIEW, position);
+            }
+        });
     }
+
+
 
     public void createItemInDB(Context ctxt, String title, String weight, FoodItem.Category category, String expiryDateInMilli, long ID, Boolean newNote){
         FoodDbAdapter foodDbAdapter = new FoodDbAdapter(ctxt);
@@ -56,5 +69,29 @@ public class ItemList extends AppCompatActivity {
         foodDbAdapter.open();
         foodDbAdapter.deleteAllFoodItem();
         foodDbAdapter.close();
+    }
+
+    private void launchFoodItemDetialActivity(AdapterView<?> adapterView, MainActivity.FragementToLaunch ftl, int position) {
+
+        FoodItem foodItem = (FoodItem)adapterView.getItemAtPosition(position) ;
+        Intent intent = new Intent(this, FoodItemDetailActivity.class);
+
+        intent.putExtra(MainActivity.FOOD_ITEM_TITLE_EXTRA, foodItem.getTitle());
+        intent.putExtra(MainActivity.FOOD_ITEM_WEIGHT_EXTRA, foodItem.getWeight());
+        intent.putExtra(MainActivity.FOOD_ITEM_ID_EXTRA, foodItem.getID());
+        intent.putExtra(MainActivity.FOOD_ITEM_DATE_EXTRA, foodItem.getExpiryDate());
+        intent.putExtra(MainActivity.FOOD_ITEM_CATEGORY_EXTRA, foodItem.getCategory());
+
+        switch(ftl) {
+            case EDIT:
+                intent.putExtra(MainActivity.FOOD_ITEM_FRAGMENT_TO_LOAD_EXTRA, MainActivity.FragementToLaunch.EDIT);
+                break;
+            case VIEW:
+                intent.putExtra(MainActivity.FOOD_ITEM_FRAGMENT_TO_LOAD_EXTRA, MainActivity.FragementToLaunch.VIEW);
+                break;
+        }
+
+        startActivity(intent);
+
     }
 }

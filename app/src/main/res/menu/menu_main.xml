@@ -8,5 +8,6 @@
         android:orderInCategory="1"
         android:title="@string/action_add_item"
         app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_input_add"
         ></item>
 </menu>

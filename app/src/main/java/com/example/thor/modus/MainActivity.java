@@ -11,6 +11,15 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String FOOD_ITEM_ID_EXTRA = "com.example.thor.modus.Identifier";
+    public static final String FOOD_ITEM_TITLE_EXTRA = "com.example.thor.modus.Title";
+    public static final String FOOD_ITEM_DATE_EXTRA = "com.example.thor.modus.Date";
+    public static final String FOOD_ITEM_WEIGHT_EXTRA = "com.example.thor.modus.Weight";
+    public static final String FOOD_ITEM_CATEGORY_EXTRA = "com.example.thor.modus.Category";
+
+    public enum FragementToLaunch {VIEW, EDIT, CREATE}
+    public static final String FOOD_ITEM_FRAGMENT_TO_LOAD_EXTRA = "com.example.thor.modus.Fragment_To_Load ";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
