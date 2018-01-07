@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity{
 
     public static final String FOOD_ITEM_ID_EXTRA = "com.example.thor.modus.Identifier";
     public static final String FOOD_ITEM_TITLE_EXTRA = "com.example.thor.modus.Title";
@@ -25,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //getActionBar().show();
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         final ImageButton calender = (ImageButton)findViewById(R.id.calender);
         final ImageButton itemList = (ImageButton)findViewById(R.id.itemList);
@@ -67,11 +69,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+
 
     private void launchItemListActivity() {
 
