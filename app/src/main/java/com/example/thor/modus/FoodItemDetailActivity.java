@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class FoodItemDetailActivity extends AppCompatActivity {
+    
+    public final static String NEW_NOTE_EXTRA = "New Note";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,12 @@ public class FoodItemDetailActivity extends AppCompatActivity {
                 setTitle(R.string.view_fragment_title);
                 fragmentTransaction.add(R.id.food_item_container, foodItemViewFragment, "FOOD_ITEM_VIEW_FRAGMENT" );
                 break;
-           /* case EDIT:
-                NoteEditFragment noteEditFragment = new NoteEditFragment();
+            case EDIT:
+                FoodItemEditFragment foodItemEditFragment = new FoodItemEditFragment();
                 setTitle(R.string.edit_fragment_title);
-                fragmentTransaction.add(R.id.note_container, noteEditFragment, "NOTE_EDIT_FRAGMENT" );
+                fragmentTransaction.add(R.id.food_item_container, foodItemEditFragment, "FOOD_ITEM_EDIT_FRAGMENT" );
                 break;
-            case CREATE:
+           /* case CREATE:
                 NoteEditFragment noteCreateFragment = new NoteEditFragment();
                 setTitle(R.string.create_fragment_title);
                 Bundle bundle = new Bundle();

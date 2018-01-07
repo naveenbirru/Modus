@@ -68,12 +68,12 @@ public class FoodDbAdapter {
         return foodItems;
     }
 
-    public FoodItem createFoodItem(String title, String message, FoodItem.Category category, String expiryDateInMilli) {
+    public FoodItem createFoodItem(String title, String message, FoodItem.Category category, String expiryDate) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
         values.put(COLUMN_WEIGHT, message);
         values.put(COLUMN_CATEGORY, category.name());
-        values.put(COLUMN_DATE, expiryDateInMilli);
+        values.put(COLUMN_DATE, expiryDate);
 
         long insertID = sqlDB.insert(FOOD_TABLE, null, values);
 
@@ -86,12 +86,12 @@ public class FoodDbAdapter {
         return foodItem;
     }
 
-    public long updateFoodItem(long idToUpdate, String title, String message, FoodItem.Category category, String expiryDateInMilli) {
+    public long updateFoodItem(long idToUpdate, String title, String message, FoodItem.Category category, String expiryDate) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
         values.put(COLUMN_WEIGHT, message);
         values.put(COLUMN_CATEGORY, category.name());
-        values.put(COLUMN_DATE, expiryDateInMilli);
+        values.put(COLUMN_DATE, expiryDate);
 
         return sqlDB.update(FOOD_TABLE, values, COLUMN_ID + " = " + idToUpdate, null);
 
