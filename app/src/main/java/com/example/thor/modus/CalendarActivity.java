@@ -1,5 +1,6 @@
 package com.example.thor.modus;
 
+import android.content.Context;
 import android.icu.text.IDNA;
 import android.icu.text.SimpleDateFormat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,8 @@ public class CalendarActivity extends AppCompatActivity {
     private ListView mainListView ;
     private ArrayList<FoodItem> foodItems;
     private ArrayAdapter<FoodItemAdapter> foodItemAdapter ;
-    private Long date;
+
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,11 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
 
         final CalendarView cv = findViewById(R.id.calendarView);
+        // Find the ListView resource.
+        mainListView = (ListView) findViewById( R.id.explistView );
+        final FoodDbAdapter dbAdapter = new FoodDbAdapter(this.getBaseContext());
+
+
 
 
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -38,50 +45,31 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
 
-                //date = cv.getDate();
+
+                String string_date = month+1+"-"+dayOfMonth+"-"+year;
+                date = string_date;
 
 
-                Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
+                dbAdapter.open();
+                Log.i("date: ", date.toString());
 
-                String string_date = dayOfMonth+"-"+month+"-"+year;
+                foodItems = dbAdapter.getFoodItemsByDate(date);
+                dbAdapter.close();
 
-                SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
-                try {
-                    Date d = f.parse(string_date);
-                    date = d.getTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
 
-                Log.i("cur date", date.toString());
+                foodItemAdapter = new FoodItemAdapter(CalendarActivity.this,foodItems);
+                // Set the ArrayAdapter as the ListView's adapter.
+                mainListView.setAdapter( foodItemAdapter );
+
+
 
             }
         });
 
 
-        // Find the ListView resource.
-        mainListView = (ListView) findViewById( R.id.explistView );
 
 
 
-        // Create ArrayAdapter using the planet list.
-
-        // Add more planets. If you passed a String[] instead of a List<String>
-        // into the ArrayAdapter constructor, you must not add more items.
-        // Otherwise an exception will occur.
-
-        foodItems = new ArrayList<FoodItem>();
-        foodItems.add(new FoodItem("Milk", "1/13/18", "10", FoodItem.Category.DAIRY));
-        foodItems.add(new FoodItem("Peach", "4/13/18", "10", FoodItem.Category.FRUITS));
-        foodItems.add(new FoodItem("Rice", "1/13/18", "10", FoodItem.Category.GRAINS));
-        foodItems.add(new FoodItem("Chicken", "1/13/18", "10", FoodItem.Category.MEAT));
-        foodItems.add(new FoodItem("Broccoli", "1/13/18", "10", FoodItem.Category.VEGETABLES));
-
-        foodItemAdapter = new FoodItemAdapter(this, foodItems);
-
-
-        // Set the ArrayAdapter as the ListView's adapter.
-        mainListView.setAdapter( foodItemAdapter );
     }
 
 }

@@ -20,10 +20,11 @@ public class ItemList extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
 
         deleteAllFoodItems(this);
-        createItemInDB(this, "Milk", "10", FoodItem.Category.DAIRY, Calendar.getInstance().getTimeInMillis(),1, true);
-        createItemInDB(this, "Banana", "10", FoodItem.Category.FRUITS, Calendar.getInstance().getTimeInMillis(),2, true);
-        createItemInDB(this, "Tomoatoes", "10", FoodItem.Category.VEGETABLES, Calendar.getInstance().getTimeInMillis(),3, true);
-        createItemInDB(this, "Fish", "10", FoodItem.Category.MEAT, Calendar.getInstance().getTimeInMillis(),4, true);
+
+        createItemInDB(this, "Milk", "10", FoodItem.Category.DAIRY, "1-1-2018",1, true);
+        createItemInDB(this, "Banana", "10", FoodItem.Category.FRUITS, "1-2-2018",2, true);
+        createItemInDB(this, "Tomatoes", "10", FoodItem.Category.VEGETABLES, "1-4-2018",3, true);
+        createItemInDB(this, "Fish", "10", FoodItem.Category.MEAT, "1-3-2018",4, true);
 
         FoodDbAdapter dbAdapter = new FoodDbAdapter(this.getBaseContext());
         dbAdapter.open();
@@ -35,7 +36,7 @@ public class ItemList extends AppCompatActivity {
         listView.setAdapter(foodItemAdapter);
     }
 
-    public void createItemInDB(Context ctxt, String title, String weight, FoodItem.Category category, long expiryDateInMilli, long ID, Boolean newNote){
+    public void createItemInDB(Context ctxt, String title, String weight, FoodItem.Category category, String expiryDateInMilli, long ID, Boolean newNote){
         FoodDbAdapter foodDbAdapter = new FoodDbAdapter(ctxt);
         foodDbAdapter.open();
 

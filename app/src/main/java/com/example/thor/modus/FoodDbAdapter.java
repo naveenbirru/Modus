@@ -56,7 +56,7 @@ public class FoodDbAdapter {
     public ArrayList<FoodItem> getAllFoodItems() {
         ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
 
-        Cursor cursor = sqlDB.query(FOOD_TABLE, allColumns, null, null, null, null, null);
+        Cursor cursor = sqlDB.query(FOOD_TABLE, allColumns, null, null, null, null, COLUMN_DATE+" DESC");
 
         for(cursor.moveToLast(); !cursor.isBeforeFirst(); cursor.moveToPrevious()) {
             FoodItem foodItem = cursorToFoodItem(cursor);
@@ -68,7 +68,7 @@ public class FoodDbAdapter {
         return foodItems;
     }
 
-    public FoodItem createFoodItem(String title, String message, FoodItem.Category category, long expiryDateInMilli) {
+    public FoodItem createFoodItem(String title, String message, FoodItem.Category category, String expiryDateInMilli) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
         values.put(COLUMN_WEIGHT, message);
@@ -86,7 +86,7 @@ public class FoodDbAdapter {
         return foodItem;
     }
 
-    public long updateFoodItem(long idToUpdate, String title, String message, FoodItem.Category category, long expiryDateInMilli) {
+    public long updateFoodItem(long idToUpdate, String title, String message, FoodItem.Category category, String expiryDateInMilli) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
         values.put(COLUMN_WEIGHT, message);
@@ -106,8 +106,33 @@ public class FoodDbAdapter {
     }
 
     private FoodItem cursorToFoodItem(Cursor cursor) {
-        FoodItem foodItem = new FoodItem(cursor.getString(1), cursor.getString(2), FoodItem.Category.valueOf(cursor.getString(3)), cursor.getLong(0), cursor.getLong(4));
+        FoodItem foodItem = new FoodItem(cursor.getString(1), cursor.getString(2), FoodItem.Category.valueOf(cursor.getString(3)), cursor.getLong(0), cursor.getString(4));
         return foodItem;
+    }
+
+    public ArrayList<FoodItem> getFoodItemsByDate(String date) {
+        ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
+
+        Log.i("date asking: ", date);
+        String query = "SELECT * FROM "+FOOD_TABLE+" WHERE "+COLUMN_DATE+"='" + date+"'";
+
+        Cursor  cursor = sqlDB.rawQuery(query,null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        //return cursor;
+
+        //Cursor cursor = sqlDB.query(FOOD_TABLE, allColumns, COLUMN_DATE + "="+ date,null, null, null, null);
+
+        for(cursor.moveToLast(); !cursor.isBeforeFirst(); cursor.moveToPrevious()) {
+            FoodItem foodItem = cursorToFoodItem(cursor);
+            foodItems.add(foodItem);
+        }
+
+        cursor.close();
+
+        return foodItems;
     }
 
     private  static class FoodDbHelper extends SQLiteOpenHelper {

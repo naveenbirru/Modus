@@ -10,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by thor on 1/6/2018.
@@ -58,6 +60,7 @@ public class FoodItemAdapter extends ArrayAdapter{
         viewHolder.title.setText(foodItem.getTitle());
         viewHolder.weight.setText(foodItem.getWeight());
         viewHolder.date.setText(foodItem.getExpiryDate());
+
         viewHolder.foodIcon.setImageResource(foodItem.getAssociatedDrawble());
 
         return convertView;

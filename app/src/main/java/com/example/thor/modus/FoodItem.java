@@ -14,9 +14,9 @@ public class FoodItem {
     private Category category;
     public enum Category {DAIRY, FRUITS, GRAINS, MEAT, VEGETABLES};
 
-    public FoodItem(String title, String weight, Category category, long foodItemID, long expiryDateinMilli) {
+    public FoodItem(String title, String weight, Category category, long foodItemID, String expiryDateinMilli) {
         this.title = title;
-        this.expiryDate = expiryDate;
+        this.expiryDate = expiryDateinMilli;
         this.weight = weight;
         this.category = category;
     }
