@@ -21,10 +21,12 @@ public class ItemList extends AppCompatActivity {
 
         deleteAllFoodItems(this);
 
-        createItemInDB(this, "Milk", "10", FoodItem.Category.DAIRY, "1-1-2018",1, true);
-        createItemInDB(this, "Banana", "10", FoodItem.Category.FRUITS, "1-2-2018",2, true);
-        createItemInDB(this, "Tomatoes", "10", FoodItem.Category.VEGETABLES, "1-4-2018",3, true);
-        createItemInDB(this, "Fish", "10", FoodItem.Category.MEAT, "1-3-2018",4, true);
+        createItemInDB(this, "Milk", "10", FoodItem.Category.DAIRY, "1-6-2018",1, true);
+        createItemInDB(this, "Banana", "10", FoodItem.Category.FRUITS, "1-6-2018",2, true);
+        createItemInDB(this, "Tomatoes", "10", FoodItem.Category.GRAINS, "1-6-2018",3, true);
+        createItemInDB(this, "Tomatoes", "10", FoodItem.Category.VEGETABLES, "1-7-2018",3, true);
+        createItemInDB(this, "Avocado", "10", FoodItem.Category.VEGETABLES, "1-7-2018",3, true);
+        createItemInDB(this, "Fish", "10", FoodItem.Category.MEAT, "1-8-2018",4, true);
 
         FoodDbAdapter dbAdapter = new FoodDbAdapter(this.getBaseContext());
         dbAdapter.open();
