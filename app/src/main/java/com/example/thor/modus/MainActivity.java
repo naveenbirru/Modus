@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Hello", "calender button selected");
+                launchCalendarActivity();
+
             }
         });
         itemList.setOnClickListener(new View.OnClickListener() {
@@ -61,4 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void launchCalendarActivity() {
+
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+
+    }
 }
