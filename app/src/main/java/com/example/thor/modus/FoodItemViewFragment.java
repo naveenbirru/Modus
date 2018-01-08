@@ -33,7 +33,7 @@ public class FoodItemViewFragment extends Fragment {
         TextView weight = (TextView) fragmentLayout.findViewById(R.id.foodItemDetailWeight);
         TextView date = (TextView) fragmentLayout.findViewById(R.id.foodItemDetailDate);
         ImageView icon = (ImageView)fragmentLayout.findViewById(R.id.foodItemDetailImg);
-
+        TextView categoryTextView = (TextView)fragmentLayout.findViewById(R.id.foodItemDetailCategory);
         Button editButton = (Button)fragmentLayout.findViewById(R.id.editFoodItem);
 
         Intent intent = getActivity().getIntent();
@@ -46,6 +46,9 @@ public class FoodItemViewFragment extends Fragment {
 
         FoodItem.Category cat = (FoodItem.Category) intent.getSerializableExtra(MainActivity.FOOD_ITEM_CATEGORY_EXTRA);
         icon.setImageResource(FoodItem.categoryToDrawable(cat));
+
+        String categoryString = FoodItem.getCategoryString(cat);
+        categoryTextView.setText(categoryString);
 
         final FoodItem foodItem = new FoodItem(title.getText().toString(), weight.getText().toString(), cat, foodItemID, date.getText().toString());
 

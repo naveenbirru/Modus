@@ -2,6 +2,7 @@ package com.example.thor.modus;
 
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,8 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 /**
@@ -22,7 +28,7 @@ import android.widget.ImageButton;
 public class FoodItemEditFragment extends Fragment {
 
     private ImageButton imageButton;
-    private FoodItem.Category savedButtonCategory;
+    private FoodItem.Category savedButtonCategory = FoodItem.Category.VEGETABLES;
     private long foodItemID;
     private AlertDialog categoryDialogObject, confirmDialogObject;
     private EditText title;
@@ -31,6 +37,7 @@ public class FoodItemEditFragment extends Fragment {
     private final String MODIFIED_CATEGORY = "Modified Category";
 
     private Boolean newFoodItem = false;
+    Calendar myCalendar;
 
 
     public FoodItemEditFragment() {
@@ -43,6 +50,8 @@ public class FoodItemEditFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
      //   return inflater.inflate(R.layout.fragment_food_item_edit, container, false);
+
+
 
         if(savedInstanceState != null) {
             savedButtonCategory = (FoodItem.Category)savedInstanceState.getSerializable(MODIFIED_CATEGORY);
@@ -57,7 +66,34 @@ public class FoodItemEditFragment extends Fragment {
         title = (EditText)fragmentLayout.findViewById(R.id.foodItemEditTitle);
         weight = (EditText)fragmentLayout.findViewById(R.id.foodItemEditWeight);
         imageButton = (ImageButton)fragmentLayout.findViewById(R.id.foodItemEditImg);
+
+        myCalendar = Calendar.getInstance();
+
         date = (EditText) fragmentLayout.findViewById(R.id.foodItemEditDate);
+
+        final DatePickerDialog.OnDateSetListener dateDiag = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        date.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), dateDiag, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         Button savedButton = (Button)fragmentLayout.findViewById(R.id.saveFoodItem);
 
         Intent intent = getActivity().getIntent();
@@ -73,6 +109,8 @@ public class FoodItemEditFragment extends Fragment {
             FoodItem.Category noteCat = (FoodItem.Category) intent.getSerializableExtra(MainActivity.FOOD_ITEM_CATEGORY_EXTRA);
             savedButtonCategory = noteCat;
             imageButton.setImageResource(FoodItem.categoryToDrawable(noteCat));
+        }else {
+            imageButton.setImageResource(FoodItem.categoryToDrawable(FoodItem.Category.VEGETABLES));
         }
 
         // Inflate the layout for this fragment
@@ -142,7 +180,7 @@ public class FoodItemEditFragment extends Fragment {
     public void buildConfirmDialog () {
         AlertDialog.Builder confirmBuilder =  new AlertDialog.Builder(getActivity());
         confirmBuilder.setTitle("Are you sure ?");
-        confirmBuilder.setMessage("Are you sure to change the note");
+        confirmBuilder.setMessage("Are you sure to change the item");
 
         confirmBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
@@ -161,7 +199,7 @@ public class FoodItemEditFragment extends Fragment {
                 }
                 foodDbAdapter.close();
 
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), ItemList.class);
                 startActivity(intent);
             }
 
@@ -169,10 +207,17 @@ public class FoodItemEditFragment extends Fragment {
         confirmBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                Intent intent = new Intent(getActivity(), ItemList.class);
+                startActivity(intent);
             }
         });
         confirmDialogObject = confirmBuilder.create();
+    }
+    private void updateLabel() {
+        String myFormat = "MM-dd-yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        date.setText(sdf.format(myCalendar.getTime()));
     }
 
 

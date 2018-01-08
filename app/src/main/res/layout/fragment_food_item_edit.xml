@@ -39,8 +39,8 @@
         android:id="@+id/foodItemEditWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/foodItemEditTitle"
         android:layout_below="@+id/foodItemEditTitle"
-        android:layout_toEndOf="@+id/textView2"
         android:ellipsize="end"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
@@ -60,13 +60,14 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/foodItemEditTitle"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:paddingTop="5dp"
         android:paddingLeft="15dp"
-        android:text="Category: "
+        android:text="Select to change Category: "
         android:textSize="18dp" />
 
     <TextView
@@ -75,7 +76,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/foodItemEditTitle"
         android:layout_alignBottom="@+id/foodItemEditTitle"
-        android:layout_alignParentStart="true"
         android:paddingLeft="15dp"
         android:text="Title: "
         android:textSize="18dp" />
@@ -95,12 +95,12 @@
         android:id="@+id/foodItemEditDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/foodItemEditWeight"
         android:layout_below="@+id/foodItemEditWeight"
-        android:layout_toEndOf="@+id/textView2"
         android:ems="10"
-        android:inputType="date"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
+        android:clickable="true"
         android:text="this is date" />
 
     <Button
@@ -112,8 +112,5 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="33dp"
         android:text="@string/saveButton" />
-
-
-
 
 </RelativeLayout>

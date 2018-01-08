@@ -25,6 +25,7 @@ public class FoodItemAdapter extends ArrayAdapter{
         TextView title;
         TextView weight;
         TextView date;
+        TextView category;
     }
 
     public FoodItemAdapter(Context context, ArrayList<FoodItem> foodItems) {super(context, 0, foodItems);}
@@ -44,6 +45,8 @@ public class FoodItemAdapter extends ArrayAdapter{
             TextView title = (TextView)convertView.findViewById(R.id.listItemTitle);
             TextView weight = (TextView)convertView.findViewById(R.id.listItemWeight);
             TextView date = (TextView)convertView.findViewById(R.id.listItemDate);
+            TextView category = (TextView)convertView.findViewById(R.id.listItemCategory);
+
 
             viewHolder = new ViewHolder();
 
@@ -51,6 +54,7 @@ public class FoodItemAdapter extends ArrayAdapter{
             viewHolder.weight =weight;
             viewHolder.foodIcon = foodIcon;
             viewHolder.date = date;
+            viewHolder.category = category;
 
             convertView.setTag(viewHolder);
         } else {
@@ -62,6 +66,8 @@ public class FoodItemAdapter extends ArrayAdapter{
         viewHolder.date.setText(foodItem.getExpiryDate());
 
         viewHolder.foodIcon.setImageResource(foodItem.getAssociatedDrawble());
+
+        viewHolder.category.setText(foodItem.getAssociatedCategory());
 
         return convertView;
     }

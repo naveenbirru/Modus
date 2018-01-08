@@ -68,7 +68,6 @@ public class CalendarActivity extends BaseActivity {
                 String string_date = month+1+"-"+dayOfMonth+"-"+year;
                 date = string_date;
 
-
                 dbAdapter.open();
                 Log.i("date: ", date.toString());
 

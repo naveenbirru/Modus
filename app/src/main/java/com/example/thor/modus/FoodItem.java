@@ -72,6 +72,10 @@ public class FoodItem {
         return categoryToDrawable(category);
     }
 
+    public String getAssociatedCategory() {
+        return getCategoryString(category);
+    }
+
     public static int categoryToDrawable(Category noteCategory) {
         Integer cat = R.mipmap.dairy;
         switch (noteCategory){
@@ -94,6 +98,27 @@ public class FoodItem {
         return cat;
     }
 
+    public static String getCategoryString(Category noteCategory) {
+        String cat = "Dairy";
+        switch (noteCategory){
+            case DAIRY:
+                cat = "Dairy";
+                break;
+            case FRUITS:
+                cat = "Fruits";
+                break;
+            case GRAINS:
+                cat = "Grains";
+                break;
+            case MEAT:
+                cat = "Meat";
+                break;
+            case VEGETABLES:
+                cat = "Vegatables";
+                break;
+        }
+        return cat;
+    }
     public void setCategory(Category category) {
         this.category = category;
     }

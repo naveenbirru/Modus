@@ -38,39 +38,62 @@
         android:layout_marginBottom="2dp"/>
 
     <TextView
+        android:id="@+id/listItemWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="this is weight"
-        android:paddingTop="10dp"
-        android:id="@+id/listItemWeight"
-        android:layout_below="@+id/listItemTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/listItemImg"
+        android:layout_above="@+id/listItemDate"
+        android:layout_toEndOf="@+id/textView"
         android:ellipsize="end"
+        android:paddingLeft="10dp"
         android:singleLine="true"
-        android:layout_marginBottom="2dp"/>
+        android:text="this is weight" />
 
     <TextView
         android:id="@+id/listItemDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listItemWeight"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignTop="@+id/textView"
         android:layout_toEndOf="@+id/textView"
         android:ems="10"
         android:inputType="date"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
         android:textAlignment="textStart" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/listItemDate"
-        android:layout_alignBottom="@+id/listItemDate"
+        android:layout_alignBottom="@+id/listItemImg"
         android:layout_toEndOf="@+id/listItemImg"
         android:paddingLeft="10dp"
         android:text="Expires by: " />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView"
+        android:layout_toEndOf="@+id/listItemImg"
+        android:paddingLeft="10dp"
+        android:text="Quantity" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/listItemTitle"
+        android:layout_toEndOf="@+id/listItemImg"
+        android:text="Category: " />
+
+    <TextView
+        android:id="@+id/listItemCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/listItemWeight"
+        android:layout_below="@+id/listItemTitle"
+        android:paddingLeft="10dp"
+        android:text="TextView" />
 
 </RelativeLayout>

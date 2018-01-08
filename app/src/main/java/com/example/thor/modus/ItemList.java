@@ -1,6 +1,8 @@
 package com.example.thor.modus;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -86,11 +88,8 @@ public class ItemList extends BaseActivity {
             case R.id.delete:
                 FoodDbAdapter dbAdapter = new FoodDbAdapter(this.getBaseContext());
                 dbAdapter.open();
-
                 dbAdapter.deleteFoodItem(foodItem.getID());
-
                 foodItems.clear();
-
                 //NAVEEN to update the array adapter
                 foodItems.addAll(dbAdapter.getAllFoodItems());
                 foodItemAdapter.notifyDataSetChanged();
