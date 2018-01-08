@@ -56,6 +56,16 @@ public class CalendarActivity extends BaseActivity {
         Calendar cal = Calendar.getInstance();
         date = sf.format(cal.getTimeInMillis());
         Log.i("date @@@@@@@@@@@@@@@@@@: ", date.toString());
+        dbAdapter.open();
+        Log.i("date: ", date.toString());
+
+        foodItems = dbAdapter.getFoodItemsByDate(date);
+        dbAdapter.close();
+
+
+        foodItemAdapter = new FoodItemAdapter(CalendarActivity.this,foodItems);
+        // Set the ArrayAdapter as the ListView's adapter.
+        mainListView.setAdapter( foodItemAdapter );
 
 
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -67,6 +77,19 @@ public class CalendarActivity extends BaseActivity {
 
                 String string_date = month+1+"-"+dayOfMonth+"-"+year;
                 date = string_date;
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+
+                try {
+                    Date dateObj = sdf.parse(date);
+                    longDate = dateObj.getTime();
+                    date = sdf.format(longDate);
+                    Log.i("date @@@@@@@@@@@@@@@@@@: ", date.toString());
+
+                }catch (ParseException e){
+                    Log.i("Error", e.getMessage());
+                }
+
 
                 dbAdapter.open();
                 Log.i("date: ", date.toString());
